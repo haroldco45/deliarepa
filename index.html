@@ -1,302 +1,474 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeliArepas - Suleima - Pedidos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* --- ESTILOS CSS --- */
-        :root {
-            --primary-color: #f7b500;
-            --secondary-color: #333;
-            --accent-color: #fff;
-            --bg-color: #f4f4f4;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DeliArepas de Suleima · Arepa con queso fundido · Caucasia</title>
+<meta name="description" content="Arepas con queso fundido recién hechas, de Suleima. Barrio El Triángulo, Caucasia. Pide por WhatsApp.">
+<meta name="theme-color" content="#1b1410">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<!-- Vista previa del enlace (WhatsApp, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="DeliArepas de Suleima · Arepa con queso fundido">
+<meta property="og:description" content="Recién hechas, con el queso que se estira. $7.000. Pide por WhatsApp — Barrio El Triángulo, Caucasia.">
+<meta property="og:image" content="https://haroldco45.github.io/deliarepa/og-deliarepa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://haroldco45.github.io/deliarepa/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://haroldco45.github.io/deliarepa/og-deliarepa.jpg">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--secondary-color);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
 
-        .app-container {
-            background-color: var(--accent-color);
-            width: 100%;
-            max-width: 500px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            padding-bottom: 20px;
-        }
+<style>
+:root{
+  --plancha:#1b1410;
+  --plancha2:#2a1f18;
+  --maiz:#f7b500;
+  --maiz2:#ffcf3a;
+  --queso:#fff4d6;
+  --brasa:#e4572e;
+  --wa:#25d366;
+  --tinta:#2b2118;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  background:var(--plancha);
+  color:var(--tinta);
+  line-height:1.5;
+  -webkit-tap-highlight-color:transparent;
+  padding-bottom:96px;
+}
+.app{max-width:520px;margin:0 auto;background:var(--queso);min-height:100vh;overflow:hidden;position:relative}
 
-        header {
-            background: linear-gradient(135deg, #444, #222);
-            color: var(--accent-color);
-            padding: 25px;
-            text-align: center;
-        }
+/* ---------- Barra superior ---------- */
+.topbar{
+  position:sticky;top:0;z-index:30;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;background:rgba(27,20,16,.88);backdrop-filter:blur(8px);
+  color:var(--queso);font-size:.85rem;font-weight:800;
+}
+.estado{display:flex;align-items:center;gap:8px}
+.punto{width:9px;height:9px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 0 rgba(37,211,102,.7);animation:latido 1.8s infinite}
+@keyframes latido{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.lang{display:flex;background:var(--plancha2);border-radius:99px;padding:3px}
+.lang button{border:0;background:transparent;color:var(--queso);font:inherit;font-size:.78rem;padding:4px 11px;border-radius:99px;cursor:pointer}
+.lang button.on{background:var(--maiz);color:var(--plancha)}
 
-        .logo-img {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 10px;
-        }
+/* ---------- Portada ---------- */
+.hero{position:relative;height:440px;overflow:hidden;background:var(--plancha)}
+.hero-bg{
+  position:absolute;inset:-30px;background:url('deliarepa.JPG') center/cover;
+  filter:blur(14px) brightness(.55) saturate(1.3);transform:scale(1.15);
+}
+.hero-foto{
+  position:absolute;left:50%;top:150px;width:94%;aspect-ratio:249/89;
+  transform:translateX(-50%);border-radius:20px;overflow:hidden;
+  box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 4px var(--maiz);
+}
+.hero-foto img{width:100%;height:100%;object-fit:cover;animation:kenburns 9s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translateX(0)}to{transform:scale(1.18) translateX(-4%)}}
 
-        .ubicacion { font-size: 0.85em; opacity: 0.9; margin-top: 10px; }
+.vapor{position:absolute;left:0;right:0;top:70px;height:120px;pointer-events:none}
+.vapor span{
+  position:absolute;bottom:0;width:60px;height:60px;border-radius:50%;
+  background:rgba(255,255,255,.35);filter:blur(16px);animation:sube 4.5s linear infinite;opacity:0;
+}
+.vapor span:nth-child(1){left:24%;animation-delay:0s}
+.vapor span:nth-child(2){left:42%;animation-delay:1.4s;width:80px;height:80px}
+.vapor span:nth-child(3){left:60%;animation-delay:2.6s}
+.vapor span:nth-child(4){left:74%;animation-delay:.8s;width:46px;height:46px}
+@keyframes sube{0%{transform:translateY(60px) scale(.6);opacity:0}25%{opacity:.9}100%{transform:translateY(-90px) scale(1.6);opacity:0}}
 
-        section { padding: 20px; }
-        h2 { font-size: 1.2em; border-bottom: 3px solid var(--primary-color); margin-bottom: 15px; display: inline-block; }
+.logo{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:170px;border-radius:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);animation:flota 3.5s ease-in-out infinite}
+@keyframes flota{0%,100%{transform:translateX(-50%) translateY(0) rotate(-2deg)}50%{transform:translateX(-50%) translateY(-6px) rotate(2deg)}}
 
-        .producto-card {
-            display: flex;
-            background: #fff;
-            border: 2px solid #eee;
-            border-radius: var(--border-radius);
-            padding: 12px;
-            align-items: center;
-        }
+.hero-txt{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:var(--queso);padding:0 18px}
+.saludo{font-weight:800;font-size:.95rem;opacity:.9}
+.hero-txt h1{font-family:'Lilita One',cursive;font-size:2.1rem;line-height:1.05;letter-spacing:.5px;text-shadow:0 3px 0 rgba(0,0,0,.35)}
+.hero-txt h1 em{font-style:normal;color:var(--maiz2)}
+.sello{
+  position:absolute;right:14px;top:120px;width:86px;height:86px;border-radius:50%;
+  background:var(--brasa);color:#fff;display:grid;place-items:center;text-align:center;
+  font-family:'Lilita One';font-size:1.25rem;line-height:1;transform:rotate(12deg);
+  box-shadow:0 8px 20px rgba(0,0,0,.4);animation:gira 6s ease-in-out infinite;z-index:3
+}
+.sello small{display:block;font-family:'Nunito';font-weight:900;font-size:.6rem;letter-spacing:1px}
+@keyframes gira{0%,100%{transform:rotate(12deg) scale(1)}50%{transform:rotate(-6deg) scale(1.08)}}
 
-        .producto-img { 
-            width: 100px; 
-            height: 70px; 
-            border-radius: 8px; 
-            margin-right: 15px;
-            object-fit: cover;
-        }
-        
-        .producto-info h3 { font-size: 1em; }
-        .precio { font-size: 1.2em; font-weight: bold; color: #d9534f; }
+/* ---------- Cinta ---------- */
+.cinta{background:var(--maiz);overflow:hidden;white-space:nowrap;border-block:3px solid var(--plancha);transform:rotate(-1.5deg);margin:-8px -10px 0;position:relative;z-index:4}
+.cinta div{display:inline-block;padding:9px 0;font-family:'Lilita One';font-size:1.05rem;color:var(--plancha);animation:corre 18s linear infinite}
+.cinta b{margin:0 18px;color:var(--brasa)}
+@keyframes corre{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        .formulario-pedido { background-color: #fafafa; }
-        
-        .item-pedido {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
+/* ---------- Secciones ---------- */
+section{padding:28px 18px}
+h2{font-family:'Lilita One';font-size:1.6rem;color:var(--plancha);margin-bottom:6px}
+.sub{color:#6b5a48;font-weight:700;margin-bottom:18px}
 
-        .cantidad-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
+.revela{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.8,.2,1)}
+.revela.ya{opacity:1;transform:none}
 
-        .cantidad-control button {
-            background: var(--primary-color);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
+/* Producto */
+.producto{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 10px 30px rgba(43,33,24,.15)}
+.producto .foto{position:relative;aspect-ratio:249/89;overflow:hidden}
+.producto .foto img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.producto:hover .foto img{transform:scale(1.08)}
+.producto .info{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.producto h3{font-family:'Lilita One';font-size:1.3rem;color:var(--plancha);line-height:1.1}
+.producto p{font-size:.9rem;color:#6b5a48;font-weight:700}
+.precio{font-family:'Lilita One';font-size:1.7rem;color:var(--brasa);white-space:nowrap;animation:late 2.4s ease-in-out infinite}
+@keyframes late{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
-        .cantidad-control input {
-            width: 50px;
-            text-align: center;
-            border: none;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
+/* Goteo de queso */
+.goteo{display:block;width:100%;height:34px;margin-top:-1px}
 
-        .select-estilo {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-        }
+/* Arma tu pedido */
+.pedido{background:var(--plancha);color:var(--queso)}
+.pedido h2{color:var(--maiz)}
+.pedido .sub{color:#d9c7a8}
+.opcion{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--plancha2);border:2px solid transparent;border-radius:16px;
+  padding:14px;margin-bottom:12px;transition:border-color .25s,transform .25s,background .25s;
+}
+.opcion.activa{border-color:var(--maiz);background:#3a2b1f;transform:translateX(4px)}
+.opcion .nom{font-weight:900;font-size:1.02rem}
+.opcion .det{font-size:.8rem;color:#c9b693;font-weight:700}
+.contador{display:flex;align-items:center;gap:6px}
+.contador button{
+  width:40px;height:40px;border-radius:50%;border:0;font:900 1.4rem 'Nunito';cursor:pointer;
+  background:var(--maiz);color:var(--plancha);transition:transform .12s
+}
+.contador button:active{transform:scale(.85)}
+.contador button.menos{background:#4a3a2c;color:var(--queso)}
+.contador output{min-width:30px;text-align:center;font-family:'Lilita One';font-size:1.4rem}
+.contador output.pop{animation:pop .35s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.6);color:var(--maiz)}100%{transform:scale(1)}}
 
-        .seccion-total {
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
+.total{
+  margin-top:18px;padding:16px 18px;border-radius:16px;
+  background:linear-gradient(120deg,var(--maiz),var(--maiz2),var(--maiz));background-size:200% 100%;
+  animation:brillo 4s linear infinite;color:var(--plancha);
+  display:flex;justify-content:space-between;align-items:center;
+}
+@keyframes brillo{from{background-position:0 0}to{background-position:200% 0}}
+.total span{font-weight:900;letter-spacing:1px}
+.total strong{font-family:'Lilita One';font-size:1.9rem}
 
-        .datos-cliente label { display: block; margin: 10px 0 5px; font-weight: bold; font-size: 0.9em; }
-        .datos-cliente input, .datos-cliente textarea {
-            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;
-        }
+/* Datos */
+.datos label{display:block;font-weight:900;margin:16px 0 6px;color:var(--plancha)}
+.datos input,.datos textarea{
+  width:100%;padding:14px;border-radius:14px;border:2px solid #e8d9b8;background:#fff;
+  font:700 1rem 'Nunito';color:var(--tinta);transition:border-color .2s,box-shadow .2s
+}
+.datos input:focus,.datos textarea:focus{outline:0;border-color:var(--maiz);box-shadow:0 0 0 4px rgba(247,181,0,.25)}
+.datos textarea{min-height:80px;resize:vertical}
+.btn-gps{
+  width:100%;margin-top:10px;padding:13px;border:0;border-radius:14px;cursor:pointer;
+  background:var(--plancha);color:var(--queso);font:900 .95rem 'Nunito';transition:background .25s
+}
+.btn-gps.ok{background:#1f7a46}
+.msg{font-size:.85rem;font-weight:800;text-align:center;margin-top:6px;min-height:1.2em}
+.msg.ok{color:#1f7a46}.msg.err{color:var(--brasa)}
 
-        .btn-ubicacion {
-            width: 100%; background: #6c757d; color: white; border: none; padding: 10px;
-            border-radius: 8px; margin-top: 10px; cursor: pointer;
-        }
+.btn-wa{
+  width:100%;margin-top:24px;padding:18px;border:0;border-radius:18px;cursor:pointer;
+  background:var(--wa);color:#fff;font:900 1.15rem 'Nunito';letter-spacing:.5px;
+  box-shadow:0 10px 24px rgba(37,211,102,.4);position:relative;overflow:hidden
+}
+.btn-wa::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:destello 2.8s infinite}
+@keyframes destello{0%{left:-60%}60%,100%{left:130%}}
 
-        .btn-whatsapp {
-            width: 100%; background: #25d366; color: white; border: none; padding: 15px;
-            border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px;
-        }
+/* Barra flotante */
+.barra{
+  position:fixed;left:50%;bottom:12px;transform:translate(-50%,140%);z-index:40;
+  width:calc(100% - 24px);max-width:496px;display:flex;align-items:center;justify-content:space-between;
+  padding:10px 10px 10px 18px;border-radius:20px;background:var(--plancha);color:var(--queso);
+  box-shadow:0 14px 34px rgba(0,0,0,.45);transition:transform .45s cubic-bezier(.2,.9,.3,1.3)
+}
+.barra.ver{transform:translate(-50%,0)}
+.barra .cant{font-size:.8rem;font-weight:800;color:#d9c7a8}
+.barra .val{font-family:'Lilita One';font-size:1.35rem;color:var(--maiz)}
+.barra button{border:0;border-radius:14px;padding:13px 18px;background:var(--wa);color:#fff;font:900 .95rem 'Nunito';cursor:pointer}
+.barra.salta{animation:salta .4s}
+@keyframes salta{0%,100%{transform:translate(-50%,0)}40%{transform:translate(-50%,-10px)}}
 
-        footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; border-top: 1px solid #eee; }
-        .dev-link { color: #007bff; text-decoration: none; font-weight: bold; }
+/* Arepa voladora */
+.vuela{position:fixed;z-index:50;width:56px;height:56px;border-radius:50%;background:url('deliarepa.JPG') 40% center/cover;
+  box-shadow:0 0 0 3px var(--maiz);pointer-events:none;transition:all .7s cubic-bezier(.5,-.3,.7,1)}
 
-        .status-msg { font-size: 0.8em; margin-top: 5px; text-align: center; }
-        .success { color: green; }
-    </style>
+footer{background:var(--plancha);color:#bfae91;text-align:center;padding:26px 18px 30px;font-size:.85rem;font-weight:700}
+footer a{color:var(--maiz);text-decoration:none;font-weight:900}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
+<div class="app">
 
-    <div class="app-container">
-        <header>
-            <img src="deliarepa1.PNG" alt="Logo DeliArepas" class="logo-img">
-            <p>Emprendimiento de Suleima</p>
-            <p class="ubicacion"><i class="fas fa-map-marker-alt"></i> Barrio El Triángulo, Caucasia</p>
-        </header>
+  <div class="topbar">
+    <div class="estado"><span class="punto"></span><span id="reloj">--:--</span><span data-i18n="recibiendo">· Recibiendo pedidos</span></div>
+    <div class="lang"><button id="b-es" class="on" type="button">ES</button><button id="b-en" type="button">EN</button></div>
+  </div>
 
-        <section>
-            <h2>Producto</h2>
-            <div class="producto-card">
-                <img src="deliarepa.JPG" alt="Arepa" class="producto-img">
-                <div class="producto-info">
-                    <h3>Arepa con Queso Fundido</h3>
-                    <p class="precio">$7.000</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="formulario-pedido">
-            <form id="form-pedido">
-                <div class="item-pedido">
-                    <label>¿Cuántas quieres?</label>
-                    <div class="cantidad-control">
-                        <button type="button" onclick="cambiarCantidad(-1)">-</button>
-                        <input type="number" id="cantidad" value="1" readonly>
-                        <button type="button" onclick="cambiarCantidad(1)">+</button>
-                    </div>
-                    
-                    <label>Acompañante:</label>
-                    <select id="adicional" class="select-estilo">
-                        <option value="Sencilla (Solo Queso)">Sencilla (Solo Queso)</option>
-                        <option value="con Arequipe">con Arequipe</option>
-                        <option value="con Lecherita">con Lecherita</option>
-                        <option value="con Mantequilla">con Mantequilla</option>
-                    </select>
-                </div>
-
-                <div class="seccion-total">
-                    <span>TOTAL:</span>
-                    <span id="total-txt">$7.000</span>
-                </div>
-
-                <div class="datos-cliente">
-                    <label>Nombre:</label>
-                    <input type="text" id="nombre" placeholder="Tu nombre" required>
-
-                    <label>Dirección:</label>
-                    <input type="text" id="direccion" placeholder="Calle, Carrera, Barrio" required>
-
-                    <button type="button" class="btn-ubicacion" id="btn-geo">
-                        <i class="fas fa-location-arrow"></i> Usar mi ubicación GPS
-                    </button>
-                    <p id="geo-status" class="status-msg"></p>
-                    <input type="hidden" id="geo-url">
-
-                    <label>Observaciones:</label>
-                    <textarea id="obs" placeholder="Ej: Sin sal, portería, etc."></textarea>
-                </div>
-
-                <button type="submit" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> PEDIR POR WHATSAPP
-                </button>
-            </form>
-        </section>
-
-        <footer>
-            <p>App desarrollada por:</p>
-            <a href="https://wa.me/573117700431" class="dev-link">Vibras Positivas (311 770 0431)</a>
-            <p>© 2026 Todos los derechos reservados</p>
-        </footer>
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <img class="logo" src="deliarepa1.PNG" alt="DeliArepas">
+    <div class="vapor"><span></span><span></span><span></span><span></span></div>
+    <div class="sello"><div><small data-i18n="solo">SOLO</small>$7.000</div></div>
+    <div class="hero-foto"><img src="deliarepa.JPG" alt="Arepas con queso fundido"></div>
+    <div class="hero-txt">
+      <p class="saludo" id="saludo">Hola</p>
+      <h1 data-i18n-html="titulo">El queso que <em>se estira</em></h1>
     </div>
+  </header>
 
-    <script>
-        const precioUnitario = 7000;
-        const whatsappSuleima = "3117348206";
+  <div class="cinta"><div id="cinta-txt"></div></div>
 
-        function cambiarCantidad(valor) {
-            const input = document.getElementById('cantidad');
-            let nuevaCant = parseInt(input.value) + valor;
-            if (nuevaCant < 1) nuevaCant = 1;
-            input.value = nuevaCant;
-            
-            document.getElementById('total-txt').innerText = '$' + (nuevaCant * precioUnitario).toLocaleString('es-CO');
-        }
+  <section class="revela">
+    <h2 data-i18n="prod_t">La consentida de la casa</h2>
+    <p class="sub" data-i18n="prod_s">Hecha por Suleima, en la plancha y al momento.</p>
+    <div class="producto">
+      <div class="foto"><img src="deliarepa.JPG" alt="Arepa con queso fundido"></div>
+      <div class="info">
+        <div>
+          <h3 data-i18n="prod_n">Arepa con Queso Fundido</h3>
+          <p data-i18n="prod_d">Doradita por fuera, derretida por dentro</p>
+        </div>
+        <div class="precio">$7.000</div>
+      </div>
+    </div>
+  </section>
 
-        document.getElementById('btn-geo').addEventListener('click', function() {
-            const status = document.getElementById('geo-status');
-            status.innerText = "Obteniendo ubicación...";
-            
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    const url = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                    document.getElementById('geo-url').value = url;
-                    status.innerText = "¡Ubicación fijada correctamente!";
-                    status.classList.add('success');
-                }, () => {
-                    status.innerText = "Error al obtener ubicación.";
-                });
-            }
-        });
+  <svg class="goteo" viewBox="0 0 520 34" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#1b1410" d="M0 34V12c20 0 22 14 40 14s18-18 40-18 20 22 44 22 22-16 46-16 18 10 40 10 24-20 48-20 22 18 46 18 20-12 44-12 22 16 46 16 24-14 46-14 20 8 40 8 20-10 40-10v32z"/>
+  </svg>
 
-        function checkSuscripcion() {
-            const inicio = localStorage.getItem('deliarepas_start');
-            const hoy = new Date();
-            if (!inicio) {
-                localStorage.setItem('deliarepas_start', hoy.toISOString());
-            } else {
-                const diff = Math.floor((hoy - new Date(inicio)) / (1000 * 60 * 60 * 24));
-                if (diff > 15) {
-                    alert("Periodo de prueba terminado. Contacta a Vibras Positivas.");
-                }
-            }
-        }
-        checkSuscripcion();
+  <section class="pedido" id="pedido">
+    <h2 data-i18n="arma_t">Arma tu pedido</h2>
+    <p class="sub" data-i18n="arma_s">Mezcla como quieras: unas con arequipe, otras sencillas…</p>
+    <div id="opciones"></div>
+    <div class="total"><span data-i18n="total">TOTAL</span><strong id="total">$0</strong></div>
+  </section>
 
-        document.getElementById('form-pedido').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const cant = document.getElementById('cantidad').value;
-            const adic = document.getElementById('adicional').value;
-            const nom = document.getElementById('nombre').value;
-            const dir = document.getElementById('direccion').value;
-            const obs = document.getElementById('obs').value;
-            const geo = document.getElementById('geo-url').value;
-            const total = (cant * precioUnitario).toLocaleString('es-CO');
+  <section class="revela">
+    <h2 data-i18n="datos_t">¿A dónde te las llevamos?</h2>
+    <form id="form" class="datos" novalidate>
+      <label for="nombre" data-i18n="nombre">Tu nombre</label>
+      <input id="nombre" autocomplete="name" data-i18n-ph="nombre_ph" placeholder="Ej: María">
 
-            let msg = `*NUEVO PEDIDO - DELIAREPAS*%0A`;
-            msg += `----------------------------%0A`;
-            msg += `*Producto:* Arepa con Queso%0A`;
-            msg += `*Cantidad:* ${cant}%0A`;
-            msg += `*Opción:* ${adic}%0A`;
-            msg += `*TOTAL:* $${total}%0A`;
-            msg += `----------------------------%0A`;
-            msg += `*Cliente:* ${nom}%0A`;
-            msg += `*Dirección:* ${dir}%0A`;
-            if(geo) msg += `*Mapa:* ${geo}%0A`;
-            if(obs) msg += `*Nota:* ${obs}%0A`;
-            msg += `----------------------------%0A`;
-            msg += `_App desarrollada por Vibras Positivas (3117700431)_%0A`;
-            msg += `_© Derechos de Autor 2026_`;
+      <label for="direccion" data-i18n="dir">Dirección</label>
+      <input id="direccion" autocomplete="street-address" data-i18n-ph="dir_ph" placeholder="Calle, carrera, barrio">
 
-            window.open(`https://wa.me/57${whatsappSuleima}?text=${msg}`, '_blank');
-        });
-    </script>
+      <button type="button" class="btn-gps" id="gps" data-i18n="gps">Usar mi ubicación GPS</button>
+      <p class="msg" id="gps-msg"></p>
+
+      <label for="obs" data-i18n="obs">Observaciones</label>
+      <textarea id="obs" data-i18n-ph="obs_ph" placeholder="Ej: bien doraditas, timbre dañado, pago con billete de 50…"></textarea>
+
+      <p class="msg" id="form-msg"></p>
+      <button type="submit" class="btn-wa" data-i18n="pedir">PEDIR POR WHATSAPP</button>
+    </form>
+  </section>
+
+  <footer>
+    <p data-i18n="lugar">Emprendimiento de Suleima · Barrio El Triángulo, Caucasia</p>
+    <p style="margin-top:10px"><span data-i18n="dev">App desarrollada por</span> <a href="https://wa.me/573117700431">Vibras Positivas HM · 311 770 0431</a></p>
+    <p>© 2026</p>
+  </footer>
+</div>
+
+<div class="barra" id="barra">
+  <div><div class="cant" id="barra-cant">0 arepas</div><div class="val" id="barra-val">$0</div></div>
+  <button type="button" id="barra-btn" data-i18n="ir">Hacer pedido</button>
+</div>
+
+<script>
+const PRECIO = 7000;
+const WHATSAPP = "573117348206";
+const ZONA = "America/Bogota";
+
+const OPCIONES = [
+  {id:"sencilla",  es:["Sencilla","Solo queso, la clásica"],            en:["Plain","Just cheese, the classic"],      wa:"Sencilla (solo queso)"},
+  {id:"arequipe",  es:["Con arequipe","Dulce y salada a la vez"],        en:["With arequipe","Sweet & salty caramel"],  wa:"Con arequipe"},
+  {id:"lecherita", es:["Con lecherita","Bañadita en leche condensada"],  en:["With condensed milk","Drizzled & sweet"],  wa:"Con lecherita"},
+  {id:"mantequilla",es:["Con mantequilla","Brillante y más suavecita"], en:["With butter","Extra soft & golden"],     wa:"Con mantequilla"}
+];
+const cant = {sencilla:1, arequipe:0, lecherita:0, mantequilla:0};
+
+const T = {
+  es:{recibiendo:"· Recibiendo pedidos",solo:"SOLO",titulo:"El queso que <em>se estira</em>",
+      prod_t:"La consentida de la casa",prod_s:"Hecha por Suleima, en la plancha y al momento.",
+      prod_n:"Arepa con Queso Fundido",prod_d:"Doradita por fuera, derretida por dentro",
+      arma_t:"Arma tu pedido",arma_s:"Mezcla como quieras: unas con arequipe, otras sencillas…",total:"TOTAL",
+      datos_t:"¿A dónde te las llevamos?",nombre:"Tu nombre",nombre_ph:"Ej: María",dir:"Dirección",dir_ph:"Calle, carrera, barrio",
+      gps:"Usar mi ubicación GPS",gps_ok:"Ubicación fijada",gps_busca:"Buscando tu ubicación…",gps_err:"No se pudo obtener la ubicación. Escribe la dirección.",
+      obs:"Observaciones",obs_ph:"Ej: bien doraditas, timbre dañado, pago con billete de 50…",pedir:"PEDIR POR WHATSAPP",
+      lugar:"Emprendimiento de Suleima · Barrio El Triángulo, Caucasia",dev:"App desarrollada por",ir:"Hacer pedido",
+      arepa:"arepa",arepas:"arepas",falta_cant:"Agrega al menos una arepa.",falta_nom:"Escribe tu nombre.",falta_dir:"Escribe la dirección o usa el GPS.",
+      dias:["¡Buenos días","¡Buenas tardes","¡Buenas noches"],cierre:"! Hoy es buen día para una arepa",
+      cinta:["Recién hechas","Queso que se estira","Domicilio en Caucasia","Hechas con amor por Suleima","Pide por WhatsApp"]},
+  en:{recibiendo:"· Taking orders",solo:"ONLY",titulo:"The cheese that <em>stretches</em>",
+      prod_t:"The house favorite",prod_s:"Made by Suleima, fresh off the griddle.",
+      prod_n:"Melted Cheese Arepa",prod_d:"Golden outside, gooey inside",
+      arma_t:"Build your order",arma_s:"Mix it up: some with arequipe, some plain…",total:"TOTAL",
+      datos_t:"Where should we bring them?",nombre:"Your name",nombre_ph:"e.g. Maria",dir:"Address",dir_ph:"Street, number, neighborhood",
+      gps:"Use my GPS location",gps_ok:"Location set",gps_busca:"Finding your location…",gps_err:"Couldn't get your location. Please type the address.",
+      obs:"Notes",obs_ph:"e.g. extra crispy, doorbell broken, paying with a 50k bill…",pedir:"ORDER ON WHATSAPP",
+      lugar:"Suleima's small business · El Triángulo, Caucasia",dev:"App built by",ir:"Order now",
+      arepa:"arepa",arepas:"arepas",falta_cant:"Add at least one arepa.",falta_nom:"Please type your name.",falta_dir:"Type your address or use GPS.",
+      dias:["Good morning","Good afternoon","Good evening"],cierre:"! A great day for an arepa",
+      cinta:["Fresh off the griddle","Stretchy melted cheese","Delivery in Caucasia","Made with love by Suleima","Order on WhatsApp"]}
+};
+let lang = "es";
+try{ lang = localStorage.getItem("deliarepas_lang") || "es"; }catch(e){}
+
+const $ = id => document.getElementById(id);
+const pesos = n => "$" + n.toLocaleString("es-CO");
+
+/* ---- Opciones ---- */
+function pintarOpciones(){
+  $("opciones").innerHTML = OPCIONES.map(o => `
+    <div class="opcion ${cant[o.id]?'activa':''}" id="op-${o.id}">
+      <div><div class="nom">${o[lang][0]}</div><div class="det">${o[lang][1]}</div></div>
+      <div class="contador">
+        <button type="button" class="menos" data-id="${o.id}" data-d="-1" aria-label="-">−</button>
+        <output id="c-${o.id}">${cant[o.id]}</output>
+        <button type="button" data-id="${o.id}" data-d="1" aria-label="+">+</button>
+      </div>
+    </div>`).join("");
+}
+$("opciones").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  const id = b.dataset.id, d = +b.dataset.d;
+  cant[id] = Math.max(0, cant[id] + d);
+  const out = $("c-"+id); out.textContent = cant[id];
+  out.classList.remove("pop"); void out.offsetWidth; out.classList.add("pop");
+  $("op-"+id).classList.toggle("activa", cant[id] > 0);
+  if(d > 0) volar(b);
+  actualizar(true);
+});
+
+/* ---- Total con conteo animado ---- */
+let mostrado = 0;
+function animarNumero(el, hasta){
+  const desde = mostrado, t0 = performance.now();
+  (function paso(t){
+    const k = Math.min(1,(t-t0)/400), v = Math.round(desde + (hasta-desde)*k);
+    el.textContent = pesos(v); $("barra-val").textContent = pesos(v);
+    if(k<1) requestAnimationFrame(paso); else mostrado = hasta;
+  })(t0);
+}
+function totalArepas(){ return Object.values(cant).reduce((a,b)=>a+b,0); }
+function actualizar(salto){
+  const n = totalArepas();
+  animarNumero($("total"), n*PRECIO);
+  $("barra-cant").textContent = n + " " + (n===1?T[lang].arepa:T[lang].arepas);
+  const barra = $("barra");
+  barra.classList.toggle("ver", n>0);
+  if(salto && n>0){ barra.classList.remove("salta"); void barra.offsetWidth; barra.classList.add("salta"); }
+}
+
+/* ---- Arepa que vuela a la barra ---- */
+function volar(desde){
+  const r = desde.getBoundingClientRect(), dest = $("barra").getBoundingClientRect();
+  const a = document.createElement("div"); a.className = "vuela";
+  a.style.left = (r.left-8)+"px"; a.style.top = (r.top-8)+"px";
+  document.body.appendChild(a);
+  requestAnimationFrame(()=>{ a.style.left=(dest.left+30)+"px"; a.style.top=(dest.top+4)+"px"; a.style.transform="scale(.3) rotate(360deg)"; a.style.opacity=".4"; });
+  setTimeout(()=>a.remove(), 750);
+}
+$("barra-btn").addEventListener("click", ()=> $("nombre").closest("section").scrollIntoView({behavior:"smooth"}));
+
+/* ---- Hora real de Colombia ---- */
+function horaCol(){
+  const p = new Intl.DateTimeFormat("es-CO",{timeZone:ZONA,hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const h = +p.find(x=>x.type==="hour").value, m = p.find(x=>x.type==="minute").value;
+  return {h, txt: String(h).padStart(2,"0")+":"+m};
+}
+function tic(){
+  const {h, txt} = horaCol();
+  $("reloj").textContent = txt;
+  const i = h<12?0:(h<19?1:2);
+  $("saludo").textContent = T[lang].dias[i] + T[lang].cierre;
+}
+
+/* ---- Idioma ---- */
+function aplicarIdioma(l){
+  lang = l; document.documentElement.lang = l;
+  try{ localStorage.setItem("deliarepas_lang", l); }catch(e){}
+  $("b-es").classList.toggle("on", l==="es"); $("b-en").classList.toggle("on", l==="en");
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = T[l][el.dataset.i18n]);
+  document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = T[l][el.dataset.i18nHtml]);
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T[l][el.dataset.i18nPh]);
+  const frase = T[l].cinta.map(s=>`<span>${s}</span><b>•</b>`).join("");
+  $("cinta-txt").innerHTML = frase + frase;
+  if(geoUrl){ $("gps").textContent = T[l].gps_ok; $("gps-msg").textContent = T[l].gps_ok; }
+  pintarOpciones(); actualizar(false); tic();
+}
+$("b-es").onclick = ()=>aplicarIdioma("es");
+$("b-en").onclick = ()=>aplicarIdioma("en");
+
+/* ---- GPS ---- */
+let geoUrl = "";
+$("gps").addEventListener("click", ()=>{
+  const msg = $("gps-msg"); msg.className = "msg"; msg.textContent = T[lang].gps_busca;
+  if(!navigator.geolocation){ msg.className="msg err"; msg.textContent = T[lang].gps_err; return; }
+  navigator.geolocation.getCurrentPosition(p=>{
+    geoUrl = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+    msg.className="msg ok"; msg.textContent = T[lang].gps_ok;
+    $("gps").classList.add("ok"); $("gps").textContent = T[lang].gps_ok;
+  }, ()=>{ msg.className="msg err"; msg.textContent = T[lang].gps_err; }, {enableHighAccuracy:true, timeout:12000});
+});
+
+/* ---- Enviar pedido ---- */
+$("form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const fm = $("form-msg"); fm.className = "msg err";
+  const n = totalArepas(), nom = $("nombre").value.trim(), dir = $("direccion").value.trim(), obs = $("obs").value.trim();
+  if(!n){ fm.textContent = T[lang].falta_cant; $("pedido").scrollIntoView({behavior:"smooth"}); return; }
+  if(!nom){ fm.textContent = T[lang].falta_nom; $("nombre").focus(); return; }
+  if(!dir && !geoUrl){ fm.textContent = T[lang].falta_dir; $("direccion").focus(); return; }
+  fm.textContent = "";
+
+  const {txt} = horaCol();
+  const linea = "----------------------------";
+  let m = `*NUEVO PEDIDO - DELIAREPAS*\n${linea}\n`;
+  OPCIONES.forEach(o=>{ if(cant[o.id]) m += `${cant[o.id]} x Arepa con queso — ${o.wa}\n`; });
+  m += `*Total arepas:* ${n}\n*TOTAL:* ${pesos(n*PRECIO)}\n${linea}\n`;
+  m += `*Cliente:* ${nom}\n`;
+  if(dir) m += `*Dirección:* ${dir}\n`;
+  if(geoUrl) m += `*Mapa:* ${geoUrl}\n`;
+  if(obs) m += `*Nota:* ${obs}\n`;
+  m += `*Hora del pedido:* ${txt} (hora Colombia)\n${linea}\n`;
+  m += `_App desarrollada por Vibras Positivas HM (3117700431)_`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(m)}`, "_blank");
+});
+
+/* ---- Periodo de prueba (igual que antes) ---- */
+(function(){
+  try{
+    const inicio = localStorage.getItem("deliarepas_start"), hoy = new Date();
+    if(!inicio) localStorage.setItem("deliarepas_start", hoy.toISOString());
+    else if(Math.floor((hoy - new Date(inicio))/86400000) > 15) alert("Periodo de prueba terminado. Contacta a Vibras Positivas.");
+  }catch(e){}
+})();
+
+/* ---- Aparecer al hacer scroll ---- */
+const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add("ya"); io.unobserve(x.target); } }), {threshold:.15});
+document.querySelectorAll(".revela").forEach(el => io.observe(el));
+
+aplicarIdioma(lang);
+setInterval(tic, 20000);
+</script>
 </body>
 </html>
